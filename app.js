@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const sauceRoutes = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/src/app/routes/sauce.js');
+const userRoutes = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/src/app/routes/user.js');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/api/sauces', sauceRoutes);
+app.use('/api/auth', userRoutes);
 
 /* app.use('/api/sauces', (req, res, next) => {
     const sauce = [

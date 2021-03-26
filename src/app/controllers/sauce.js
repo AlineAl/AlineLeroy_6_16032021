@@ -1,4 +1,16 @@
-const Sauce = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/src/app/models/sauce.js');
+const Sauce = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/src/app/models/Sauce.js');
+
+exports.getAllSauces = (req, res, next) => {
+    Sauce.find()
+      .then(sauces => res.status(200).json(sauces))
+      .catch(error => res.status(400).json({ error }));
+}
+
+exports.getOneSauce = (req, res, next) => {
+    Sauce.findOne({ _id: req.params.id })
+      .then(sauces => res.status(200).json(sauces))
+      .catch(error => res.status(404).json({ error }));
+}
 
 exports.createSauce = (req, res) => {
     delete req.body._id;
@@ -22,14 +34,3 @@ exports.deleteSauce = (req, res, next) => {
       .catch(error => res.status(400).json({ error }));
 }
 
-exports.getAllSauce = (req, res, next) => {
-    Sauce.find()
-      .then(sauces => res.status(200).json(sauces))
-      .catch(error => res.status(400).json({ error }));
-}
-
-exports.getOneSauce = (req, res, next) => {
-    Sauce.findOne({ _id: req.params.id })
-      .then(sauces => res.status(200).json(sauces))
-      .catch(error => res.status(404).json({ error }));
-}
