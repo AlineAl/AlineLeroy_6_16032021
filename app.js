@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const sauceRoutes = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/src/app/routes/sauce.js');
-const userRoutes = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/src/app/routes/user.js');
+const sauceRoutes = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/routes/sauce.js');
+const userRoutes = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/routes/user.js');
 
 const app = express();
 
