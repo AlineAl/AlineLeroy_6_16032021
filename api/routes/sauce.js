@@ -3,8 +3,9 @@ const router = express.Router();
 
 const sauceController = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/routes/sauce.js');
 const auth = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/middleware/auth.js');
+const multer = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/middleware/multer-config.js');
 
-router.get('/', auth, (res, req) => {
+router.get('/', auth, multer, (res, req) => {
   sauceController.getAllSauces
 });
 router.get('/:id', auth, (res, req) => {

@@ -13,9 +13,11 @@ exports.getOneSauce = (req, res, next) => {
 }
 
 exports.createSauce = (req, res, next) => {
-    delete req.body._id;
+  const thingObject = JSON.parse(req.body.sauce)
+    delete thingObject._id;
     const sauce = new Sauce({
-      ...req.body
+      ...thingObject,
+      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
     sauce.save()
     .then(() => res.status(201).json({ message: 'Objet enregistré !'}))

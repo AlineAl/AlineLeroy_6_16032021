@@ -1,6 +1,5 @@
 const User = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/models/User.js');
 const bcrypt = require('bcrypt');
-const { isJSDocUnknownType } = require('typescript');
 
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
