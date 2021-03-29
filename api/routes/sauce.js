@@ -1,20 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const sauceController = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/routes/sauce.js');
 
-router.get('/', (res, req) => {
+const sauceController = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/routes/sauce.js');
+const auth = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/middleware/auth.js');
+
+router.get('/', auth, (res, req) => {
   sauceController.getAllSauces
 });
-router.get('/:id', (res, req) => {
+router.get('/:id', auth, (res, req) => {
   sauceController.getOneSauce
 });
-router.post('/', (res, req) => {
+router.post('/', auth, (res, req) => {
   sauceController.createSauce
 });
-router.put('/:id', (res, req) => {
+router.put('/:id', auth, (res, req) => {
   sauceController.modifySauce
 });
-router.delete('/:id', (res, req) => {
+router.delete('/:id', auth, (res, req) => {
   sauceController.deleteSauce
 });
 
