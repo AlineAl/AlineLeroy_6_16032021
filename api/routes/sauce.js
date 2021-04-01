@@ -1,24 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-const sauceController = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/routes/sauce.js');
-const auth = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/middleware/auth.js');
-const multer = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/middleware/multer-config.js');
+const sauceController = require('../controllers/sauce.js');
+const auth = require('../middleware/auth.js');
+const multer = require('../middleware/multer-config.js');
 
-router.get('/', auth, multer, (res, req) => {
-  sauceController.getAllSauces
-});
-router.get('/:id', auth, (res, req) => {
-  sauceController.getOneSauce
-});
-router.post('/', auth, (res, req) => {
-  sauceController.createSauce
-});
-router.put('/:id', auth, multer, (res, req) => {
-  sauceController.modifySauce
-});
-router.delete('/:id', auth, (res, req) => {
-  sauceController.deleteSauce
-});
+router.get('/', auth, multer, sauceController.getAllSauce);
+router.get('/:id', auth, sauceController.getOneSauce);
+router.post('/', auth, sauceController.createSauce);
+router.put('/:id', auth, multer, sauceController.modifySauce);
+router.delete('/:id', auth, sauceController.deleteSauce);
 
 module.exports = router;

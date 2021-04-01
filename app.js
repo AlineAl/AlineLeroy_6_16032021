@@ -3,14 +3,15 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const sauceRoutes = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/routes/sauce.js');
-const userRoutes = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/routes/user.js');
+const sauceRoutes = require('./api/routes/sauce.js');
+const userRoutes = require('./api/routes/user.js');
 
 const app = express();
 
 mongoose.connect('mongodb+srv://new_user:cZvh70BPsgZTxEhC@cluster0.abd4f.mongodb.net/myFirstDatabase',
   { useNewUrlParser: true,
-    useUnifiedTopology: true })
+    useUnifiedTopology: true,
+    useCreateIndex: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
