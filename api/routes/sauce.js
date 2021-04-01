@@ -14,7 +14,7 @@ router.get('/:id', auth, (res, req) => {
 router.post('/', auth, (res, req) => {
   sauceController.createSauce
 });
-router.put('/:id', auth, (res, req) => {
+router.put('/:id', auth, multer, (res, req) => {
   sauceController.modifySauce
 });
 router.delete('/:id', auth, (res, req) => {

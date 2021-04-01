@@ -2,6 +2,7 @@ const User = require('/Users/aline/code/AlineAl/AlineLeroy_6_16032021/api/models
 const bcrypt = require('bcrypt');
 
 exports.signup = (req, res, next) => {
+    console.log('route signup');
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
         const user = new User({
@@ -16,6 +17,7 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
+    console.log('route login');
     User.findOne({ email: req.body.email })
     .then(user => {
         if(!user) {
