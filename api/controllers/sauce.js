@@ -1,5 +1,6 @@
 const Sauce = require('../models/Sauce.js');
 const fs = require('fs');
+const { ObjectId } = require('bson');
 
 exports.getAllSauce = (req, res, next) => {
     Sauce.find()
@@ -48,4 +49,41 @@ exports.deleteSauce = (req, res, next) => {
   })
   .catch(error => res.status(500).json({ error })) 
 };
+
+exports.likeSauce = (req, res, next) => {
+  const alreadyExistLike = req.body.likes.default === 1
+  const alreadyExistDislike = req.body.dislikes.default === -1
+  Sauce.findOne({_id: req.params.id})
+  .then(sauce => {
+    // Pour un userId
+    // Regarder si j'aime = 1 ou -1 existe déjà
+    if(req.body.userId) {
+      if(alreadyExistLike || alreadyExistDislike) {
+        console.log("test")
+      } else {
+          if(req.body.likes === 1) {
+            Sauce.updateOne(
+              {_id: req.params.id},
+              {$push: {usersLiked: userId}}, 
+              {$inc: {likes: +1}}
+            )
+          } else if(req.body.dislikes === -1) {
+            Sauce.updateOne(
+              {_id: req.params.id},
+              {$push: {usersDisliked: userId}}, 
+              {$inc: {likes: -1}}
+            )
+          } else if(req.body.likes === 0){
+            Sauce.updateOne(
+              {_id: req.params.id},
+              {$push: {usersDisliked: userId}}, 
+              {$inc: {likes: 0}}
+            )
+          }
+          } 
+      }
+      
+  })
+  .catch(error => res.status(500).json({ error }));
+}
 
