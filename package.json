@@ -31,6 +31,7 @@
     "express": "^4.17.1",
     "json-web-token": "^3.2.0",
     "jsonwebtoken": "^8.5.1",
+    "mongo-mask": "^1.1.0",
     "mongodb": "^3.6.5",
     "mongoose": "^5.12.3",
     "mongoose-unique-validator": "^2.0.3",
