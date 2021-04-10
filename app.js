@@ -1,13 +1,29 @@
 const express = require('express');
+const session = require('cookie-session');
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const mongoMask = require('mongo-mask')
 const path = require('path');
 
 const sauceRoutes = require('./api/routes/sauce.js');
 const userRoutes = require('./api/routes/user.js');
 
 const app = express();
+
+app.use(helmet());
+
+const expiryDate = new Date( Date.now() + 60 * 60 * 1000 ); // 1 hour
+app.use(session({
+  name: 'session',
+  keys: ['key1', 'key2'],
+  cookie: { secure: true,
+            httpOnly: true,
+            domain: 'example.com',
+            path: '/api/sauces',
+            expires: expiryDate
+          }
+  })
+);
 
 mongoose.connect('mongodb+srv://new_user:cZvh70BPsgZTxEhC@cluster0.abd4f.mongodb.net/myFirstDatabase',
   { useNewUrlParser: true,
