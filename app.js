@@ -1,6 +1,10 @@
 const express = require('express');
+
 const session = require('cookie-session');
 const helmet = require('helmet');
+const contentSecurityPolicy = require('helmet-csp');
+const cors = require('cors');
+
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -11,6 +15,21 @@ const userRoutes = require('./api/routes/user.js');
 const app = express();
 
 app.use(helmet());
+app.use(helmet.frameguard({ action: 'deny' }));
+
+app.use(
+  contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'", "default.example"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: [],
+    },
+    reportOnly: false,
+  })
+);
+
+app.use(cors());
 
 const expiryDate = new Date( Date.now() + 60 * 60 * 1000 ); // 1 hour
 app.use(session({
@@ -18,8 +37,7 @@ app.use(session({
   keys: ['key1', 'key2'],
   cookie: { secure: true,
             httpOnly: true,
-            domain: 'example.com',
-            path: '/api/sauces',
+            path: '/api/auth',
             expires: expiryDate
           }
   })
