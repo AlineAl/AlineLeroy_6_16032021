@@ -46,7 +46,7 @@ app.use(session({
   })
 );
 
-mongoose.connect(`mongodb+srv://${process.env.USERNAME_MONGO_DB}:${process.env.PASSWORD_MONGO_DB}@cluster0.abd4f.mongodb.net/myFirstDatabase`,
+mongoose.connect(`mongodb+srv://${process.env.USERNAME_MONGO_DB}:${process.env.PASSWORD_MONGO_DB}@${process.env.CLUSTER}.abd4f.mongodb.net/${process.env.DATABASE_NAME}`,
   { useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true })
