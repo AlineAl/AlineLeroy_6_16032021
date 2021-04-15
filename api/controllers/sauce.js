@@ -51,31 +51,30 @@ exports.deleteSauce = (req, res, next) => {
 
 exports.likeSauce = (req, res) => {
   console.log("debut test")
-  let message = "";
   Sauce.findOne({_id: req.params.id})
   .then((sauce) => {
     // Pour un userId
     // Regarder si j'aime = 1 ou -1 existe déjà
     //if(req.body.userId === req.body.userId) {
-      if(req.body.like === 1) {
+      const like = req.body.like
+      if(like === 1) {
         Sauce.updateOne(
           {_id: req.params.id},
-          {$push: {usersLiked: req.body.userId}, $inc: {like: 1}}
+          {$pull: {usersLiked: req.body.userId}, $inc: {like: +1}}
         )
         .then(() => res.status(200).json({ message: 'Sauce like !'}))
         .catch(error => res.status(400).json({ error }));
-      } else if(req.body.like === -1) {
+      } else if(like === -1) {
         Sauce.updateOne(
           {_id: req.params.id},
-          {$push: {usersDisliked: req.body.userId}, $inc: {like: -1}}
+          {$pull: {usersDisliked: req.body.userId}, $inc: {like: -1}}
         )
         .then(() => res.status(200).json({ message: 'Sauce dislike !'}))
         .catch(error => res.status(400).json({ error }));
-      } else if(req.body.like === 0) {
+      } else if(like === 0) {
         Sauce.updateOne(
           {_id: req.params.id},
           {$push: {usersliked: req.body.userId}, $inc: {like: 0}}
-  
         )
         .then(() => res.status(200).json({ message: 'Sauce dislike !'}))
         .catch(error => res.status(400).json({ error }));
