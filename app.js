@@ -32,7 +32,7 @@ app.use(
   })
 );
 
-app.use(cors());
+app.use(cors({origin: 'http://localhost:4200'}));
 
 const expiryDate = new Date( Date.now() + 60 * 60 * 1000 ); // 1 hour
 app.use(session({

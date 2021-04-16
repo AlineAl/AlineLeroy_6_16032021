@@ -10,7 +10,7 @@ Voici les instructions à suivre afin de pouvoir accéder à ce projet. Les rout
 
 ## BACK-END
 
-1) Pour se connecter à la base de donnée (MongoDB Atlas), créer un fichier `.env` et copier/coller dans ce fichier, les informations présentes dans le fichier `.env_sample`. Remplacer les contenus des variables par les données personnelles.
+1) Pour se connecter à la base de donnée (MongoDB Atlas), renommer le fichier `.env_sample` en fichier `.env`.
 
 2) Effectuer dans le terminal un `npm install` ou si vous utilisez yarn, un `yarn install`
 
